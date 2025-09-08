@@ -1,0 +1,124 @@
+@import '../../../@theme/styles/themes';
+
+@include nb-install-component() {
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    display: block;
+    color: nb-theme(text-basic-color);
+  }
+
+  .error-message {
+    color: nb-theme(color-danger-default);
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+  }
+
+  .image-upload-container {
+    margin-top: 0.5rem;
+
+    .upload-area {
+      border: 2px dashed nb-theme(border-basic-color-3);
+      border-radius: 8px;
+      padding: 2rem;
+      text-align: center;
+      transition: border-color 0.3s ease;
+      background-color: nb-theme(background-basic-color-2);
+
+      &:hover {
+        border-color: nb-theme(color-primary-default);
+        background-color: nb-theme(background-basic-color-3);
+      }
+
+      .upload-label {
+        cursor: pointer;
+        margin: 0;
+
+        .upload-icon {
+          font-size: 3rem;
+          color: nb-theme(text-hint-color);
+          margin-bottom: 1rem;
+        }
+
+        p {
+          margin: 0.5rem 0;
+          color: nb-theme(text-basic-color);
+          font-weight: 500;
+        }
+
+        small {
+          color: nb-theme(text-hint-color);
+          font-size: 0.75rem;
+        }
+      }
+    }
+
+    .image-preview {
+      position: relative;
+      display: inline-block;
+
+      img {
+        max-width: 200px;
+        max-height: 250px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .remove-image-btn {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
+
+  .action-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+
+    button {
+      flex: 1;
+      max-width: 150px;
+    }
+  }
+
+  nb-card {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  nb-card-header {
+    h4 {
+      margin: 0;
+      color: nb-theme(text-basic-color);
+    }
+  }
+
+  // Responsive design
+  @media (max-width: 768px) {
+    .action-buttons {
+      flex-direction: column;
+
+      button {
+        max-width: none;
+      }
+    }
+
+    .image-upload-container .upload-area {
+      padding: 1.5rem 1rem;
+    }
+  }
+}

@@ -1,52 +1,39 @@
-import { ExtraOptions, RouterModule, Routes } from '@angular/router';
-import { NgModule } from '@angular/core';
-import {
-  NbAuthComponent,
-  NbLoginComponent,
-  NbLogoutComponent,
-  NbRegisterComponent,
-  NbRequestPasswordComponent,
-  NbResetPasswordComponent,
-} from '@nebular/auth';
+import { ExtraOptions, RouterModule, Routes } from "@angular/router";
+import { NgModule } from "@angular/core";
+import { authGuard } from "./@core/auth/auth.guard";
 
 export const routes: Routes = [
   {
-    path: 'pages',
-    loadChildren: () => import('./pages/pages.module')
-      .then(m => m.PagesModule),
+    path: "pages",
+    canActivate: [authGuard],
+    loadChildren: () =>
+      import("./pages/pages.module").then((m) => m.PagesModule),
   },
   {
-    path: 'auth',
-    component: NbAuthComponent,
-    children: [
-      {
-        path: '',
-        component: NbLoginComponent,
-      },
-      {
-        path: 'login',
-        component: NbLoginComponent,
-      },
-      {
-        path: 'register',
-        component: NbRegisterComponent,
-      },
-      {
-        path: 'logout',
-        component: NbLogoutComponent,
-      },
-      {
-        path: 'request-password',
-        component: NbRequestPasswordComponent,
-      },
-      {
-        path: 'reset-password',
-        component: NbResetPasswordComponent,
-      },
-    ],
+    path: "auth",
+    loadChildren: () => import("./auth/auth.module").then((m) => m.AuthModule),
   },
-  { path: '', redirectTo: 'pages', pathMatch: 'full' },
-  { path: '**', redirectTo: 'pages' },
+  {
+    path: "miscellaneous",
+    loadChildren: () =>
+      import("./pages/miscellaneous/miscellaneous.module").then(
+        (m) => m.MiscellaneousModule
+      ),
+  },
+  // Add a redirect route that doesn't require auth
+  {
+    path: "redirect",
+    redirectTo: "pages",
+    pathMatch: "full",
+  },
+  { path: "", redirectTo: "auth/login", pathMatch: "full" },
+  {
+    path: "**",
+    loadChildren: () =>
+      import("./pages/miscellaneous/miscellaneous.module").then(
+        (m) => m.MiscellaneousModule
+      ),
+  },
 ];
 
 const config: ExtraOptions = {
@@ -57,5 +44,4 @@ const config: ExtraOptions = {
   imports: [RouterModule.forRoot(routes, config)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}

@@ -1,0 +1,247 @@
+import { NbMenuItem } from "@nebular/theme";
+
+export const MENU_ITEMS: NbMenuItem[] = [
+  {
+    title: "E-commerce",
+    icon: "shopping-cart-outline",
+    link: "/old-pages/e-commerce",
+    home: true,
+  },
+  {
+    title: "IoT Dashboard",
+    icon: "home-outline",
+    link: "/old-pages/iot-dashboard",
+  },
+  {
+    title: "FEATURES",
+    group: true,
+  },
+  {
+    title: "Layout",
+    icon: "layout-outline",
+    children: [
+      {
+        title: "Stepper",
+        link: "/old-pages/layout/stepper",
+      },
+      {
+        title: "List",
+        link: "/old-pages/layout/list",
+      },
+      {
+        title: "Infinite List",
+        link: "/old-pages/layout/infinite-list",
+      },
+      {
+        title: "Accordion",
+        link: "/old-pages/layout/accordion",
+      },
+      {
+        title: "Tabs",
+        pathMatch: "prefix",
+        link: "/old-pages/layout/tabs",
+      },
+    ],
+  },
+  {
+    title: "Forms",
+    icon: "edit-2-outline",
+    children: [
+      {
+        title: "Form Inputs",
+        link: "/old-pages/forms/inputs",
+      },
+      {
+        title: "Form Layouts",
+        link: "/old-pages/forms/layouts",
+      },
+      {
+        title: "Buttons",
+        link: "/old-pages/forms/buttons",
+      },
+      {
+        title: "Datepicker",
+        link: "/old-pages/forms/datepicker",
+      },
+    ],
+  },
+  {
+    title: "UI Features",
+    icon: "keypad-outline",
+    link: "/old-pages/ui-features",
+    children: [
+      {
+        title: "Grid",
+        link: "/old-pages/ui-features/grid",
+      },
+      {
+        title: "Icons",
+        link: "/old-pages/ui-features/icons",
+      },
+      {
+        title: "Typography",
+        link: "/old-pages/ui-features/typography",
+      },
+      {
+        title: "Animated Searches",
+        link: "/old-pages/ui-features/search-fields",
+      },
+    ],
+  },
+  {
+    title: "Modal & Overlays",
+    icon: "browser-outline",
+    children: [
+      {
+        title: "Dialog",
+        link: "/old-pages/modal-overlays/dialog",
+      },
+      {
+        title: "Window",
+        link: "/old-pages/modal-overlays/window",
+      },
+      {
+        title: "Popover",
+        link: "/old-pages/modal-overlays/popover",
+      },
+      {
+        title: "Toastr",
+        link: "/old-pages/modal-overlays/toastr",
+      },
+      {
+        title: "Tooltip",
+        link: "/old-pages/modal-overlays/tooltip",
+      },
+    ],
+  },
+  {
+    title: "Extra Components",
+    icon: "message-circle-outline",
+    children: [
+      {
+        title: "Calendar",
+        link: "/old-pages/extra-components/calendar",
+      },
+      {
+        title: "Progress Bar",
+        link: "/old-pages/extra-components/progress-bar",
+      },
+      {
+        title: "Spinner",
+        link: "/old-pages/extra-components/spinner",
+      },
+      {
+        title: "Alert",
+        link: "/old-pages/extra-components/alert",
+      },
+      {
+        title: "Calendar Kit",
+        link: "/old-pages/extra-components/calendar-kit",
+      },
+      {
+        title: "Chat",
+        link: "/old-pages/extra-components/chat",
+      },
+    ],
+  },
+  {
+    title: "Maps",
+    icon: "map-outline",
+    children: [
+      {
+        title: "Google Maps",
+        link: "/old-pages/maps/gmaps",
+      },
+      {
+        title: "Leaflet Maps",
+        link: "/old-pages/maps/leaflet",
+      },
+      {
+        title: "Bubble Maps",
+        link: "/old-pages/maps/bubble",
+      },
+      {
+        title: "Search Maps",
+        link: "/old-pages/maps/searchmap",
+      },
+    ],
+  },
+  {
+    title: "Charts",
+    icon: "pie-chart-outline",
+    children: [
+      {
+        title: "Echarts",
+        link: "/old-pages/charts/echarts",
+      },
+      {
+        title: "Charts.js",
+        link: "/old-pages/charts/chartjs",
+      },
+      {
+        title: "D3",
+        link: "/old-pages/charts/d3",
+      },
+    ],
+  },
+  {
+    title: "Editors",
+    icon: "text-outline",
+    children: [
+      {
+        title: "TinyMCE",
+        link: "/old-pages/editors/tinymce",
+      },
+      {
+        title: "CKEditor",
+        link: "/old-pages/editors/ckeditor",
+      },
+    ],
+  },
+  {
+    title: "Tables & Data",
+    icon: "grid-outline",
+    children: [
+      {
+        title: "Smart Table",
+        link: "/old-pages/tables/smart-table",
+      },
+      {
+        title: "Tree Grid",
+        link: "/old-pages/tables/tree-grid",
+      },
+    ],
+  },
+  {
+    title: "Miscellaneous",
+    icon: "shuffle-2-outline",
+    children: [
+      {
+        title: "404",
+        link: "/old-pages/miscellaneous/404",
+      },
+    ],
+  },
+  {
+    title: "Auth",
+    icon: "lock-outline",
+    children: [
+      {
+        title: "Login",
+        link: "/auth/login",
+      },
+      {
+        title: "Register",
+        link: "/auth/register",
+      },
+      {
+        title: "Request Password",
+        link: "/auth/request-password",
+      },
+      {
+        title: "Reset Password",
+        link: "/auth/reset-password",
+      },
+    ],
+  },
+];

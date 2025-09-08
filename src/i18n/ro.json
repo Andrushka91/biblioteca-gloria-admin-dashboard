@@ -1,0 +1,21 @@
+{
+  "locale": "ro",
+  "translations": {
+    "Books Management": "Gestionarea Cărților",
+    "Title": "Titlu",
+    "Author": "Autor",
+    "Published Year": "Anul Publicării",
+    "Status": "Status",
+    "Actions": "Acțiuni",
+    "Available Copies": "Exemplare Disponibile",
+    "Total Copies": "Total Exemplare",
+    "Available": "Disponibil",
+    "Borrowed": "Împrumutat",
+    "Maintenance": "Mentenanță",
+    "Out of Stock": "Stoc Epuizat",
+    "Under Maintenance": "În Mentenanță",
+    "Discontinued": "Retras din Circulație",
+    "books.title": "Gestionarea Cărților",
+    "books.confirmDelete": "Sunteți sigur că doriți să ștergeți această carte?"
+  }
+}

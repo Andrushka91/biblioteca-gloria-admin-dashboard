@@ -1,0 +1,217 @@
+<nb-card>
+  <nb-card-header>
+    <h4>{{ languageService.translate("books.addNewBook") }}</h4>
+  </nb-card-header>
+
+  <nb-card-body>
+    <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <!-- Title -->
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="title" class="label">
+              {{ languageService.translate("Title") }} *
+            </label>
+            <input
+              nbInput
+              fullWidth
+              id="title"
+              formControlName="title"
+              [status]="isFieldInvalid('title') ? 'danger' : 'basic'"
+              placeholder="{{ languageService.translate('books.enterTitle') }}"
+            />
+            <div *ngIf="isFieldInvalid('title')" class="error-message">
+              {{ getFieldError("title") }}
+            </div>
+          </div>
+        </div>
+
+        <!-- Author -->
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="author" class="label">
+              {{ languageService.translate("Author") }} *
+            </label>
+            <input
+              nbInput
+              fullWidth
+              id="author"
+              formControlName="author"
+              [status]="isFieldInvalid('author') ? 'danger' : 'basic'"
+              placeholder="{{ languageService.translate('books.enterAuthor') }}"
+            />
+            <div *ngIf="isFieldInvalid('author')" class="error-message">
+              {{ getFieldError("author") }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <!-- ISBN -->
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="isbn" class="label">
+              {{ languageService.translate("books.isbn") }} *
+            </label>
+            <input
+              nbInput
+              fullWidth
+              id="isbn"
+              formControlName="isbn"
+              [status]="isFieldInvalid('isbn') ? 'danger' : 'basic'"
+              placeholder="{{ languageService.translate('books.enterIsbn') }}"
+            />
+            <div *ngIf="isFieldInvalid('isbn')" class="error-message">
+              {{ getFieldError("isbn") }}
+            </div>
+          </div>
+        </div>
+
+        <!-- Published Year -->
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="publishedYear" class="label">
+              {{ languageService.translate("Published Year") }} *
+            </label>
+            <input
+              nbInput
+              fullWidth
+              type="number"
+              id="publishedYear"
+              formControlName="publishedYear"
+              [status]="isFieldInvalid('publishedYear') ? 'danger' : 'basic'"
+              placeholder="{{ languageService.translate('books.enterYear') }}"
+            />
+            <div *ngIf="isFieldInvalid('publishedYear')" class="error-message">
+              {{ getFieldError("publishedYear") }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <!-- Total Copies -->
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="totalCopies" class="label">
+              {{ languageService.translate("Total Copies") }} *
+            </label>
+            <input
+              nbInput
+              fullWidth
+              type="number"
+              id="totalCopies"
+              formControlName="totalCopies"
+              [status]="isFieldInvalid('totalCopies') ? 'danger' : 'basic'"
+              placeholder="{{
+                languageService.translate('books.enterTotalCopies')
+              }}"
+            />
+            <div *ngIf="isFieldInvalid('totalCopies')" class="error-message">
+              {{ getFieldError("totalCopies") }}
+            </div>
+          </div>
+        </div>
+
+        <!-- Available Copies -->
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="availableCopies" class="label">
+              {{ languageService.translate("Available Copies") }} *
+            </label>
+            <input
+              nbInput
+              fullWidth
+              type="number"
+              id="availableCopies"
+              formControlName="availableCopies"
+              [status]="isFieldInvalid('availableCopies') ? 'danger' : 'basic'"
+              placeholder="{{
+                languageService.translate('books.enterAvailableCopies')
+              }}"
+            />
+            <div
+              *ngIf="isFieldInvalid('availableCopies')"
+              class="error-message"
+            >
+              {{ getFieldError("availableCopies") }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Book Image Upload -->
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label class="label">
+              {{ languageService.translate("books.bookCover") }}
+            </label>
+
+            <div class="image-upload-container">
+              <div class="upload-area" *ngIf="!imagePreview">
+                <input
+                  type="file"
+                  id="bookImage"
+                  (change)="onFileSelected($event)"
+                  accept="image/jpeg,image/png,image/jpg"
+                  style="display: none"
+                />
+                <label for="bookImage" class="upload-label">
+                  <nb-icon
+                    icon="cloud-upload-outline"
+                    class="upload-icon"
+                  ></nb-icon>
+                  <p>{{ languageService.translate("books.clickToUpload") }}</p>
+                  <small>{{
+                    languageService.translate("books.supportedFormats")
+                  }}</small>
+                </label>
+              </div>
+
+              <div class="image-preview" *ngIf="imagePreview">
+                <img [src]="imagePreview" alt="Book cover preview" />
+                <button
+                  type="button"
+                  nbButton
+                  status="danger"
+                  size="small"
+                  class="remove-image-btn"
+                  (click)="removeImage()"
+                >
+                  <nb-icon icon="trash-2-outline"></nb-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </nb-card-body>
+
+  <nb-card-footer>
+    <div class="action-buttons">
+      <button
+        nbButton
+        outline
+        status="basic"
+        (click)="onCancel()"
+        [disabled]="isSubmitting"
+      >
+        {{ languageService.translate("books.cancel") }}
+      </button>
+
+      <button
+        nbButton
+        status="primary"
+        (click)="onSubmit()"
+        [disabled]="bookForm.invalid || isSubmitting"
+        [nbSpinner]="isSubmitting"
+        nbSpinnerStatus="primary"
+      >
+        {{ languageService.translate("books.addBook") }}
+      </button>
+    </div>
+  </nb-card-footer>
+</nb-card>

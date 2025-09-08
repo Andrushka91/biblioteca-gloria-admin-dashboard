@@ -1,0 +1,36 @@
+/* Home Component Styles */
+
+.home-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+
+  nb-icon {
+    font-size: 1.5rem;
+  }
+}
+
+.row {
+  margin-bottom: 2rem;
+}
+
+nb-card {
+  margin-bottom: 1.5rem;
+}
+
+nb-card-header h3 {
+  margin: 0;
+  color: nb-theme(color-primary);
+}
+
+nb-card-body p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+nb-card-body p:last-child {
+  margin-bottom: 0;
+}

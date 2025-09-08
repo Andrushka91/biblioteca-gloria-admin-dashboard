@@ -1,0 +1,115 @@
+/* Books Component Styles */
+
+nb-card-header {
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    h3 {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 0;
+
+      nb-icon {
+        font-size: 1.5rem;
+        color: #8f9bb3;
+      }
+    }
+
+    .add-book-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      nb-icon {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  // Responsive design
+  @media (max-width: 768px) {
+    .header-content {
+      flex-direction: column;
+      align-items: stretch;
+
+      .add-book-btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  }
+}
+
+ng2-smart-table {
+  // Custom table styling
+  :host ::ng-deep {
+    .ng2-smart-table {
+      .ng2-smart-table-container {
+        .table {
+          .ng2-smart-row {
+            &.selected {
+              background: rgba(64, 123, 255, 0.1);
+            }
+          }
+
+          .ng2-smart-title {
+            font-weight: 600;
+            color: #2c2c54;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Status badges styling
+:host ::ng-deep {
+  .ng2-smart-table {
+    .table {
+      td {
+        vertical-align: middle;
+
+        // Ensure table rows accommodate book cover images
+        &:first-child {
+          width: 100px;
+          padding: 8px;
+        }
+
+        // Style book cover images specifically in table cells
+        // (Remove generic img selector to avoid conflicts with other images)
+
+        // Style book placeholder
+        .book-placeholder {
+          width: 80px !important;
+          height: 96px !important;
+          background: #ddd;
+          display: flex !important;
+          align-items: center;
+          justify-content: center;
+          border-radius: 4px;
+          font-size: 24px;
+        }
+      }
+
+      // Adjust row height for book covers
+      tr {
+        height: 104px;
+
+        td {
+          height: 104px;
+          border-bottom: 1px solid #edf1f7;
+          vertical-align: middle;
+        }
+
+        &:hover {
+          background-color: #f7f9fc;
+        }
+      }
+    }
+  }
+}

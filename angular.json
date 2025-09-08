@@ -3,10 +3,19 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ngx-admin-demo": {
+    "biblioteca-gloria-admin-dashboard": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
+      "i18n": {
+        "sourceLocale": "en",
+        "locales": {
+          "ro": {
+            "translation": "src/i18n/ro.json",
+            "baseHref": ""
+          }
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -85,6 +94,11 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ]
+            },
+            "ro": {
+              "aot": true,
+              "outputPath": "dist/ro/",
+              "localize": ["ro"]
             }
           },
           "defaultConfiguration": ""
@@ -92,18 +106,23 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ngx-admin-demo:build"
+            "browserTarget": "biblioteca-gloria-admin-dashboard:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ngx-admin-demo:build:production"
+              "browserTarget": "biblioteca-gloria-admin-dashboard:build:production"
+            },
+            "ro": {
+              "browserTarget": "biblioteca-gloria-admin-dashboard:build:ro"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ngx-admin-demo:build"
+            "browserTarget": "biblioteca-gloria-admin-dashboard:build",
+            "format": "json",
+            "outputPath": "src/i18n"
           }
         },
         "test": {
@@ -158,7 +177,7 @@
         }
       }
     },
-    "ngx-admin-demo-e2e": {
+    "biblioteca-gloria-admin-dashboard-e2e": {
       "root": "e2e",
       "sourceRoot": "",
       "projectType": "application",
@@ -167,7 +186,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "ngx-admin-demo:serve"
+            "devServerTarget": "biblioteca-gloria-admin-dashboard:serve"
           }
         }
       }
@@ -187,5 +206,8 @@
     "@angular-eslint/schematics:library": {
       "setParserOptionsProject": true
     }
+  },
+  "cli": {
+    "analytics": "40c95220-abae-4ad9-ad42-73320b3e7bb4"
   }
 }
