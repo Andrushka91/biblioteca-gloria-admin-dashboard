@@ -38,6 +38,10 @@ const routes: Routes = [
         path: "reset-password",
         component: NbResetPasswordComponent,
       },
+      {
+        path: "**",
+        redirectTo: "login",
+      },
     ],
   },
 ];

@@ -20,19 +20,11 @@ export const routes: Routes = [
         (m) => m.MiscellaneousModule
       ),
   },
-  // Add a redirect route that doesn't require auth
-  {
-    path: "redirect",
-    redirectTo: "pages",
-    pathMatch: "full",
-  },
   { path: "", redirectTo: "auth/login", pathMatch: "full" },
+  // Redirect any unknown route to auth/login to prevent infinite loading
   {
     path: "**",
-    loadChildren: () =>
-      import("./pages/miscellaneous/miscellaneous.module").then(
-        (m) => m.MiscellaneousModule
-      ),
+    redirectTo: "auth/login",
   },
 ];
 

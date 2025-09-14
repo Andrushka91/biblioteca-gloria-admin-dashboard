@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import {
-  NbAuthStrategy,
+  NbPasswordAuthStrategy,
   NbAuthResult,
   NbAuthStrategyClass,
 } from "@nebular/auth";
@@ -19,15 +19,25 @@ export interface AuthUser {
 }
 
 @Injectable()
-export class CustomAuthStrategy extends NbAuthStrategy {
+export class CustomAuthStrategy extends NbPasswordAuthStrategy {
   private baseUrl = `${environment.apiUrl}/auth`;
 
   static setup(options: any): [NbAuthStrategyClass, any] {
     return [CustomAuthStrategy, options];
   }
 
-  constructor(private http: HttpClient, private router: Router) {
-    super();
+  constructor(
+    protected http: HttpClient,
+    private activatedRoute: ActivatedRoute
+  ) {
+    super(http, activatedRoute);
+  }
+
+  // Override the default failure redirect behavior
+  protected processFailure(response: any, result: NbAuthResult): NbAuthResult {
+    // Don't call the parent method - just return the result without any redirect processing
+    console.log("🔍 PROCESS FAILURE - Blocking default redirect behavior");
+    return result;
   }
 
   authenticate(data?: any): Observable<NbAuthResult> {
@@ -62,9 +72,13 @@ export class CustomAuthStrategy extends NbAuthStrategy {
 
     if (!email || !password) {
       return of(
-        new NbAuthResult(false, null, "Email and password are required", [
-          "Email and password are required",
-        ])
+        new NbAuthResult(
+          false,
+          null,
+          this.getOption("login.redirect.failure"),
+          ["Email and password are required"],
+          []
+        )
       );
     }
 
@@ -171,34 +185,36 @@ export class CustomAuthStrategy extends NbAuthStrategy {
               }
             }
 
-            // Return successful result (no automatic redirect)
-            return new NbAuthResult(true, response, "Login successful");
+            // Return successful result (let Nebular handle the redirect)
+            return new NbAuthResult(
+              true,
+              response,
+              this.getOption("login.redirect.success"),
+              [],
+              ["Login successful"]
+            );
           } else {
             console.log("🔍 LOGIN - No access_token in response");
-            return new NbAuthResult(false, response, "Login failed", [
-              "Invalid credentials",
-            ]);
-          }
-        }),
-        tap((result) => {
-          console.log("🔍 LOGIN - NbAuthResult created:", result);
-          console.log("🔍 LOGIN - Is success?", result.isSuccess());
-
-          if (result.isSuccess()) {
-            console.log("🔍 LOGIN SUCCESS - Starting manual redirect");
-
-            // Use a small delay to ensure localStorage is set, then redirect
-            setTimeout(() => {
-              console.log("🔍 LOGIN - Navigating to /redirect");
-              this.router.navigate(["/redirect"]);
-            }, 100);
+            return new NbAuthResult(
+              false,
+              response,
+              this.getOption("login.redirect.failure"),
+              ["Invalid credentials"],
+              []
+            );
           }
         }),
         catchError((error) => {
           console.error("🔍 LOGIN ERROR:", error);
           const errorMessage = error.error?.message || "Login failed";
           return of(
-            new NbAuthResult(false, error, errorMessage, [errorMessage])
+            new NbAuthResult(
+              false,
+              error,
+              this.getOption("login.redirect.failure"),
+              [errorMessage],
+              []
+            )
           );
         })
       );
@@ -220,9 +236,13 @@ export class CustomAuthStrategy extends NbAuthStrategy {
 
     if (!fullName || !email || !password) {
       return of(
-        new NbAuthResult(false, null, "All fields are required", [
-          "Full name, email and password are required",
-        ])
+        new NbAuthResult(
+          false,
+          null,
+          this.getOption("register.redirect.failure"),
+          ["Full name, email and password are required"],
+          []
+        )
       );
     }
 
@@ -278,40 +298,36 @@ export class CustomAuthStrategy extends NbAuthStrategy {
               Object.keys(localStorage)
             );
 
-            // Return successful result without redirect (we handle it manually)
+            // Return successful result (let Nebular handle the redirect)
             return new NbAuthResult(
               true,
               response,
-              "Registration successful",
-              []
+              this.getOption("register.redirect.success"),
+              [],
+              ["Registration successful"]
             );
           } else {
             console.log("🔍 REGISTER - No access_token in response");
-            return new NbAuthResult(false, response, "Registration failed", [
-              "Registration failed",
-            ]);
-          }
-        }),
-        tap((result) => {
-          console.log("🔍 REGISTER - NbAuthResult created:", result);
-          console.log("🔍 REGISTER - Is success?", result.isSuccess());
-
-          // Manual redirect for registration
-          if (result.isSuccess()) {
-            console.log("🔍 REGISTER SUCCESS - Handling redirect manually");
-            setTimeout(() => {
-              console.log(
-                "🔍 REGISTER - Redirecting to /pages using window.location"
-              );
-              window.location.href = "/pages";
-            }, 300);
+            return new NbAuthResult(
+              false,
+              response,
+              this.getOption("register.redirect.failure"),
+              ["Registration failed"],
+              []
+            );
           }
         }),
         catchError((error) => {
           console.error("🔍 REGISTER ERROR:", error);
           const errorMessage = error.error?.message || "Registration failed";
           return of(
-            new NbAuthResult(false, error, errorMessage, [errorMessage])
+            new NbAuthResult(
+              false,
+              error,
+              this.getOption("register.redirect.failure"),
+              [errorMessage],
+              []
+            )
           );
         })
       );
@@ -329,15 +345,22 @@ export class CustomAuthStrategy extends NbAuthStrategy {
           return new NbAuthResult(
             true,
             response,
-            "Reset password email sent",
-            []
+            this.getOption("requestPass.redirect.success"),
+            [],
+            ["Reset password email sent"]
           );
         }),
         catchError((error) => {
           const errorMessage =
             error.error?.message || "Failed to send reset email";
           return of(
-            new NbAuthResult(false, error, errorMessage, [errorMessage])
+            new NbAuthResult(
+              false,
+              error,
+              this.getOption("requestPass.redirect.failure"),
+              [errorMessage],
+              []
+            )
           );
         })
       );
@@ -350,9 +373,13 @@ export class CustomAuthStrategy extends NbAuthStrategy {
 
     if (password !== confirmPassword) {
       return of(
-        new NbAuthResult(false, null, "Passwords do not match", [
-          "Passwords do not match",
-        ])
+        new NbAuthResult(
+          false,
+          null,
+          this.getOption("resetPass.redirect.failure"),
+          ["Passwords do not match"],
+          []
+        )
       );
     }
 
@@ -366,14 +393,21 @@ export class CustomAuthStrategy extends NbAuthStrategy {
           return new NbAuthResult(
             true,
             response,
-            "Password reset successful",
-            []
+            this.getOption("resetPass.redirect.success"),
+            [],
+            ["Password reset successful"]
           );
         }),
         catchError((error) => {
           const errorMessage = error.error?.message || "Password reset failed";
           return of(
-            new NbAuthResult(false, error, errorMessage, [errorMessage])
+            new NbAuthResult(
+              false,
+              error,
+              this.getOption("resetPass.redirect.failure"),
+              [errorMessage],
+              []
+            )
           );
         })
       );
@@ -395,7 +429,15 @@ export class CustomAuthStrategy extends NbAuthStrategy {
     );
     console.log("🔍 LOGOUT - Cleared all localStorage including user info");
 
-    return of(new NbAuthResult(true, null, "Logout successful", []));
+    return of(
+      new NbAuthResult(
+        true,
+        null,
+        this.getOption("logout.redirect.success"),
+        [],
+        ["Logout successful"]
+      )
+    );
   }
 
   refreshToken(): Observable<NbAuthResult> {
@@ -403,11 +445,25 @@ export class CustomAuthStrategy extends NbAuthStrategy {
 
     if (!token) {
       return of(
-        new NbAuthResult(false, null, "No token found", ["No token found"])
+        new NbAuthResult(
+          false,
+          null,
+          this.getOption("refreshToken.redirect.failure"),
+          ["No token found"],
+          []
+        )
       );
     }
 
     // If your backend supports token refresh, implement it here
-    return of(new NbAuthResult(true, { token }, "Token refreshed", []));
+    return of(
+      new NbAuthResult(
+        true,
+        { token },
+        this.getOption("refreshToken.redirect.success"),
+        [],
+        ["Token refreshed"]
+      )
+    );
   }
 }

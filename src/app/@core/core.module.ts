@@ -122,20 +122,35 @@ export const NB_CORE_PROVIDERS = [
     strategies: [
       CustomAuthStrategy.setup({
         name: "custom",
+        baseEndpoint: "", // Prevent any default endpoint redirects
+        login: {
+          redirect: {
+            success: "/pages", // Redirect to main app on successful login
+            failure: null, // Disable failure redirects - this prevents "Invalid%20credentials"
+          },
+        },
+        register: {
+          redirect: {
+            success: "/pages",
+            failure: null, // Disable failure redirects
+          },
+        },
+        logout: {
+          redirect: {
+            success: "/auth/login",
+            failure: null,
+          },
+        },
       }),
     ],
     forms: {
       login: {
-        redirectDelay: 0, // No delay, we handle redirect manually
+        redirectDelay: 0, // No delay
         strategy: "custom",
         rememberMe: true,
         showMessages: {
           success: false,
-          error: true,
-        },
-        redirect: {
-          success: null, // Disable Nebular redirect completely
-          failure: null,
+          error: true, // Show error messages inline
         },
       },
       register: {
@@ -146,10 +161,6 @@ export const NB_CORE_PROVIDERS = [
           error: true,
         },
         terms: false,
-        redirect: {
-          success: "/pages",
-          failure: null,
-        },
       },
     },
   }).providers,
