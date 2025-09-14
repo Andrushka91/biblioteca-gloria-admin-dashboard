@@ -1,98 +1,124 @@
 # Biblioteca Gloria Admin Dashboard
 
-# Admin dashboard for Biblioteca Gloria based on Angular and <a href="https://github.com/akveo/nebular">Nebular</a>
+Admin dashboard for Biblioteca Gloria based on Angular and <a href="https://github.com/akveo/nebular">Nebular</a>
 
 <a target="_blank" href="https://demo.akveo.com/ngx-admin/pages/dashboard?theme=corporate&utm_campaign=ngx_admin%20-%20demo%20-%20ngx_admin%20github%20readme&utm_source=ngx_admin&utm_medium=referral&utm_content=hero_banner_corporate"><img src="https://i.imgur.com/mFdqvgG.png"/></a>
+
+## 🚀 Recent Updates (v11.1.0)
+
+### Authentication & Security Improvements
+- ✅ **Fixed login redirect issues** - No more "Invalid%20credentials" URL redirects
+- ✅ **Enhanced error handling** - Login errors now display inline on the form
+- ✅ **Improved user experience** - Proper authentication flow with Nebular Auth
+- ✅ **Security enhancements** - Updated auth strategy to extend NbPasswordAuthStrategy
+
+### Routing & Navigation
+- ✅ **Fixed infinite spinner** - Resolved loading issues on invalid URLs
+- ✅ **Smart 404 handling** - Unauthenticated users redirect to login, authenticated users see 404 page
+- ✅ **Cleaner routing** - Removed unnecessary redirect routes and improved navigation flow
+
+### Development Improvements
+- ✅ **Git workflow optimization** - Added package-lock.json to .gitignore
+- ✅ **Dependency updates** - Updated ngx-charts to v20.1.0 with legacy peer deps support
 
 ## Installation notes
 
 To install this project you have to use NodeJS version 14.14+ because of [node-sass](https://github.com/sass/node-sass) version utilized in the application.
 
 ```bash
-npm install
+npm install --legacy-peer-deps
 npm start
 ```
 
-## Key features
+## Features
 
-- The most popular and trusted Angular open source dashboard template is out there. Used by hundreds of thousands developers worldwide and Fortune 500 companies\*.
-- Over 40+ Angular Components and 60+ Usage Examples. Kick off your project and save money by using ngx-admin.
-- Already using ngx-admin and willing to switch to material theme? Material theme is backward-compatible. Check out the article describing how to do that.
-- ngx-admin material works perfectly with Angular Material and Nebular. Take the best from both!
+### Library Management System
+- 📚 **Book Management** - Complete CRUD operations for library books
+- 👥 **User Authentication** - Secure login/logout with role-based access
+- 📊 **Dashboard Analytics** - Overview of library statistics and metrics
+- 🔍 **Search & Filter** - Advanced book search and filtering capabilities
 
-### What's included:
+### Technical Features
+- **Angular 15** with TypeScript
+- **Nebular UI Library** for consistent design
+- **Bootstrap 4+** & SCSS for responsive styling
+- **Authentication Module** with multiple providers
+- **Responsive Layout** with mobile support
+- **Hot-reload** development server
+- **40+ Angular Components** ready to use
 
-- Angular & Typescript
-- Bootstrap 4+ & SCSS
-- Responsive layout
-- RTL support
-- High resolution
-- Flexibly configurable themes with **hot-reload** (3 themes included)
-- Authentication module with multiple providers
-- 40+ Angular Components
-- 60+ Usage Examples
+## Available Themes
 
-## Material theme for ngx-admin
-
-Material admin theme is based on the most popular Angular dashboard template - [ngx-admin](https://akveo.github.io/ngx-admin?utm_campaign=ngx_admin%20-%20home%20-%20ngx_admin%20github%20readme&utm_source=ngx_admin_material&utm_medium=referral&utm_content=github_readme)
-To use material theme checkout `feat/material-theme` branch.
-
-### Templates
-
-<a href="https://www.akveo.com/templates/fleet-management-dashboard?utm_campaign=services%20[…]x-admin%20&utm_medium=referral%20&utm_content=github_banner%20"><img src="https://i.imgur.com/Z8EwGfh.png"></a>
-
-### With 6 stunning visual themes
-
-| <a target="_blank" href="https://demo.akveo.com/ngx-admin/pages/dashboard?theme=material-dark&utm_campaign=ngx_admin%20-%20demo%20-%20ngx_admin%20docs&utm_source=ngx_admin&utm_medium=referral&utm_content=ngx_admin_material_themes_material_dark"><img src="https://i.imgur.com/67YAlhf.png"/></a> | <a target="_blank" href="https://demo.akveo.com/ngx-admin/pages/dashboard?theme=material-light&utm_campaign=ngx_admin%20-%20demo%20-%20ngx_admin%20docs&utm_source=ngx_admin&utm_medium=referral&utm_content=ngx_admin_material_themes_material_light"><img src="https://i.imgur.com/aQzw0hD.png"/></a> |
-| --- | --- |
-|  Material Dark | Material Light |
+The dashboard comes with multiple beautiful themes powered by Nebular:
 
 | <a target="_blank" href="https://demo.akveo.com/ngx-admin/pages/dashboard?theme=dark&utm_campaign=ngx_admin%20-%20demo%20-%20ngx_admin%20github%20readme&utm_source=ngx_admin&utm_medium=referral&utm_content=github_readme_theme_dark"><img src="https://i.imgur.com/9UkTGgr.png"/></a> | <a target="_blank" href="https://demo.akveo.com/ngx-admin/pages/dashboard?theme=default&utm_campaign=ngx_admin%20-%20demo%20-%20ngx_admin%20github%20readme&utm_source=ngx_admin&utm_medium=referral&utm_content=github_readme_theme_default"><img src="https://i.imgur.com/Kn3xDKQ.png"/></a> |
 | --- | --- |
-|  Dark| Default |
+|  Dark Theme | Light Theme |
 
 | <a target="_blank" href="https://demo.akveo.com/ngx-admin/pages/dashboard?theme=cosmic&utm_campaign=ngx_admin%20-%20demo%20-%20ngx_admin%20github%20readme&utm_source=ngx_admin&utm_medium=referral&utm_content=github_readme_theme_cosmic"><img src="https://i.imgur.com/iJu2YDF.png"/></a> | <a target="_blank" href="https://demo.akveo.com/ngx-admin/pages/dashboard?theme=corporate&utm_campaign=ngx_admin%20-%20demo%20-%20ngx_admin%20github%20readme&utm_source=ngx_admin&utm_medium=referral&utm_content=github_readme_theme_corporate"><img src="https://i.imgur.com/GpUt6NW.png"/></a> |
 | --- | --- |
-| Cosmic  | Corporate |
+| Cosmic Theme | Corporate Theme |
 
-## Documentation
+## Development
 
-This template is using [Nebular](https://github.com/akveo/nebular) modules set, [here you can find documentation and other useful articles](https://akveo.github.io/nebular/docs/guides/install-based-on-starter-kit?utm_campaign=nebular%20-%20docs%20-%20ngx_admin%20github%20readme&utm_source=ngx_admin&utm_medium=referral&utm_content=documentation_useful_articles).
+### Prerequisites
+- Node.js 14.14+
+- npm or yarn
 
-### Empty starter kit
+### Getting Started
+```bash
+# Clone the repository
+git clone https://github.com/Andrushka91/biblioteca-gloria-admin-dashboard.git
 
-Don't need all the pages and modules and just looking for an empty starter kit for your next project? Check out our [starter-kit branch](https://github.com/akveo/ngx-admin/tree/starter-kit).
+# Install dependencies
+cd biblioteca-gloria-admin-dashboard
+npm install --legacy-peer-deps
 
-## BrowserStack
+# Start development server
+npm start
 
-This project runs its tests on multiple desktop and mobile browsers using [BrowserStack](http://www.browserstack.com).
+# Build for production
+npm run build:prod
+```
 
-<img src="https://cloud.githubusercontent.com/assets/131406/22254249/534d889e-e254-11e6-8427-a759fb23b7bd.png" height="40" />
+### Scripts
+- `npm start` - Start development server
+- `npm run build` - Build the application
+- `npm run build:prod` - Build for production with AOT
+- `npm test` - Run unit tests
+- `npm run lint` - Run linting
+- `npm run test:coverage` - Run tests with coverage report
 
-## UI Bakery
+### Project Structure
+```
+src/
+├── app/
+│   ├── @core/           # Core services and authentication
+│   ├── @theme/          # UI theme and components
+│   ├── auth/            # Authentication pages
+│   ├── pages/           # Main application pages
+│   │   ├── books/       # Book management module
+│   │   ├── dashboard/   # Dashboard pages
+│   │   └── ...
+│   └── models/          # Data models
+├── assets/              # Static assets
+└── environments/        # Environment configurations
+```
 
-Need a visual admin dashboard builder? Check out [UI Bakery](https://uibakery.io).
+## Contributing
 
-<a href="https://uibakery.io"><img src="https://storage.uibakery.io/video-assets/landing/Logo/UIB%20400x150.png" height="80" /></a>
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-## More from Akveo
+## License
 
-- [Eva Icons](https://github.com/akveo/eva-icons) - 480+ beautiful Open Source icons
-- [Nebular](https://github.com/akveo/nebular) - Angular Components, Auth and Security
-- [Akveo templates](https://www.akveo.com/templates?utm_campaign=services%20-%20github%20-%20templates&utm_source=ngx_admin&utm_medium=referral&utm_content=ngx_admin%20github%20readme%20more%20from%20akveo%20link) - 10+ Ready-to-use apps templates to speed up your apps developments
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## How can I support developers?
+## Acknowledgments
 
-- Star our GitHub repo :star:
-- Create pull requests, submit bugs, suggest new features or documentation updates :wrench:
-- Follow us on [Twitter](https://twitter.com/akveo_inc) :feet:
-- Like our page on [Facebook](https://www.facebook.com/akveo/) :thumbsup:
-
-## Looking for engineering services? 
-
-Visit [our homepage](https://www.akveo.com?utm_campaign=services%20-%20akveo%20website%20-%20ngx_admin%20github%20readme&utm_source=ngx_admin&utm_medium=referral&utm_content=looking_for_engineering_services_visit_homepage) or simply leave us a message to [contact@akveo.com](mailto:contact@akveo.com). We will be happy to work with you!
-
-## From Developers
-
-Made with :heart: by [Akveo team](https://www.akveo.com?utm_campaign=services%20-%20akveo%20website%20-%20ngx_admin%20github%20readme&utm_source=ngx_admin&utm_medium=referral&utm_content=from_developers_made_by). Follow us on [Twitter](https://twitter.com/akveo_inc) to get the latest news first!
-We're always happy to receive your feedback!
+- Built with [Angular](https://angular.io/)
+- UI components from [Nebular](https://akveo.github.io/nebular/)
+- Based on [ngx-admin](https://github.com/akveo/ngx-admin) template
