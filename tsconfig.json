@@ -21,6 +21,10 @@
         "name": "tslint-language-service"
       }
     ],
-    "useDefineForClassFields": false
-  }
+    "useDefineForClassFields": false,
+    "skipLibCheck": true
+  },
+  "exclude": [
+    "node_modules/@types/ws"
+  ]
 }
