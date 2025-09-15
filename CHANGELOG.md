@@ -1,3 +1,42 @@
+<a name="11.2.0"></a>
+# [11.2.0](https://github.com/Andrushka91/biblioteca-gloria-admin-dashboard/compare/v11.1.0...v11.2.0) (2025-09-15)
+
+### Features
+
+* **deployment:** configure Railway platform deployment for full-stack application
+* **production:** connect Angular frontend to deployed NestJS backend
+* **infrastructure:** add Node.js environment specifications and static file serving
+
+### Bug Fixes
+
+* **build:** resolve TypeScript @types/ws conflicts with skipLibCheck configuration
+* **deployment:** fix Railway npm command availability with proper NIXPACKS builder
+* **server:** configure port 80 for Railway static site hosting
+* **dependencies:** add legacy peer deps configuration for npm compatibility
+
+### Infrastructure
+
+* **railway.toml:** add Railway platform configuration with NIXPACKS builder
+* **Procfile:** configure deployment commands for Railway platform
+* **.npmrc:** add legacy peer dependencies support
+* **package.json:** specify Node.js engines (>=18.0.0) and add serve dependency
+* **environment.prod.ts:** configure production backend URL for Railway deployment
+
+<a name="11.1.0"></a>
+# [11.1.0](https://github.com/Andrushka91/biblioteca-gloria-admin-dashboard/compare/v11.0.0...v11.1.0) (2025-09-14)
+
+### Features
+
+* **authentication:** implement comprehensive authentication and routing improvements
+* **navigation:** fix redirect issues and invalid credential handling
+* **book-management:** enhance book cover image display with Canvas resizing
+
+### Bug Fixes
+
+* **auth:** resolve authentication redirect issues and infinite spinner on invalid routes
+* **routing:** fix navigation flow and guard implementations
+* **ui:** improve user experience with proper error handling
+
 <a name="11.0.0"></a>
 # [11.0.0](https://github.com/akveo/ngx-admin/compare/v10.0.0...v11.0.0) (2023-10-29)
 
